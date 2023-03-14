@@ -1,0 +1,74 @@
+.searchHeader{
+    border-bottom: 1px solid white;
+  }
+  
+  form {
+      padding: 20px;
+      border-radius: 1px;
+      background-color: rgba(77, 70, 70, 0.6);
+  }
+  
+  /* Add styling for form elements */
+  input[type="text"],
+  select,
+  input[type="number"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 20px;
+      border-radius: 5px;
+      border: 1px solid white;
+      background-color: transparent;
+      box-sizing: border-box;
+      color: antiquewhite;
+  }
+  
+  input[type="checkbox"] {
+      margin-bottom: 20px;
+  }
+  
+  input[type="submit"],
+  input[type="button"] {
+      width: 20%;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      color: white;
+  }
+  
+  input[type="submit"] {
+      background-color: rgb(255, 98, 0);
+  }
+  
+  input[type="button"] {
+      background-color: rgb(32, 69, 164);
+  }
+  
+  input[type="submit"]:hover {
+    background-color: rgb(255, 138, 40);
+  }
+  
+  input[type="button"]:hover {
+    background-color: rgb(64, 107, 200); /* lighter color */
+  }
+  
+  h2 {
+      text-align: center;
+      color: white;
+  }
+  
+  label[for="keyword"]::after, label[for="category"]::after, label[for="location"]::after {
+  content: "*";
+  color: red;
+  }
+  
+  label[for="distance"], label[for="category"], label[for="keyword"], label[for="location"] {
+      font-size: small;
+      display: inline-block;
+      width: 25%;
+      color: rgb(19, 108, 135);
+  }
+  
+  #category {
+    color: black;
+  }
