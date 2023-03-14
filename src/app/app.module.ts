@@ -6,13 +6,15 @@ import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SearchComponent } from './search/search.component';
 import { FavoriteComponent } from './favorite/favorite.component';
+import { EventDetailsComponent } from './event-details/event-details.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     SearchComponent,
-    FavoriteComponent
+    FavoriteComponent,
+    EventDetailsComponent
   ],
   imports: [
     BrowserModule,
