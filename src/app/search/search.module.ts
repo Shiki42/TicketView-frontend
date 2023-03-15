@@ -3,9 +3,10 @@ import { CommonModule } from '@angular/common';
 import { SearchComponent } from './search.component';
 import { SearchFormComponent } from './search-form/search-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { SearchResultComponent } from './search-result/search-result.component';
 
 @NgModule({
-  declarations: [SearchComponent, SearchFormComponent],
+  declarations: [SearchComponent, SearchFormComponent, SearchResultComponent],
   imports: [
     CommonModule,
     ReactiveFormsModule

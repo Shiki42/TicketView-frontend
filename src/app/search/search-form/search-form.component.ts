@@ -1,6 +1,8 @@
 import { Component, Output, EventEmitter  } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
-
+import { LocationService } from '../../services/location.service';
+import { SearchService } from '../../services/search.service';
+import Geohash from '../../services/geohash';
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
@@ -8,6 +10,7 @@ import { FormGroup, FormControl, Validators} from '@angular/forms';
 })
 export class SearchFormComponent {
   @Output() clearResults = new EventEmitter<void>();
+  @Output() searchResults = new EventEmitter<any>();
 
   isLocationHidden = false;
 
@@ -27,6 +30,34 @@ export class SearchFormComponent {
       autoDetect: false,
       location: '',
     });
+    // Emit the custom event to the parent component
+    this.clearResults.emit();
+  }
+  
+  constructor(private locationService: LocationService, private searchService: SearchService) {}
+
+  async onSubmit() {
+    if (this.searchForm.valid) {
+      const { keyword, distance, category, autoDetect, location } = this.searchForm.value;
+
+      let loc;
+      if (autoDetect) {
+        loc = await this.locationService.fetchLocation();
+      } else {
+        loc = await this.locationService.getLatLngFromAddress(location!);
+      }
+
+      if (loc) {
+        const dist = Number(distance) || 10;
+        const cat = category || 'default';
+        const geoPoint = Geohash.encode(loc.latitude, loc.longitude, 9);
+
+        const eventsData = await this.searchService.searchEvents(keyword!, dist, cat, geoPoint);
+        this.searchResults.emit(eventsData);
+      } else {
+        this.searchResults.emit(null);
+      }
+    }
   }
 
   toggleLocation() {
