@@ -1,4 +1,28 @@
 <p>search-form works!</p>
+
+<form [formGroup]="searchForm" class="frosted-glass">
+  <h2 class="searchHeader">Events Search</h2>
+  <label for="keyword">Keyword</label><br>
+  <input formControlName="keyword" type="text" id="keyword" required /><br>
+  <label for="distance">Distance(miles)</label>
+  <input formControlName="distance" type="number" id="distance" placeholder="10" />
+  <label for="category">Category</label>
+  <select formControlName="category" id="category" required>
+    <option value="default">Default</option>
+    <option value="music">Music</option>
+    <option value="sports">Sports</option>
+    <option value="arts">Arts & Theatre</option>
+    <option value="film">Film</option>
+    <option value="misc">Miscellaneous</option>
+  </select>
+  <input formControlName="autoDetect" type="checkbox" id="auto-detect" (change)="toggleLocation()" />
+  <div *ngIf="!isLocationHidden" id="location-container">
+    <input formControlName="location" type="text" name="location" id="location" [attr.required]="!isLocationHidden ? '' : null" />
+  </div>
+  <input type="submit" id="search_btn" value="SEARCH" />
+  <input type="button" id="clear" value="CLEAR" (click)="clear()" />
+</form>
+
 <form class="frosted-glass">
     <h2 class="searchHeader">Events Search</h2>
     <label for="keyword">Keyword</label>
