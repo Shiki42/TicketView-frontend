@@ -1,1 +1,21 @@
-<p>search-result works!</p>
+<div *ngIf="eventsData && eventsData.length === 0" class="no-results">No records found.</div>
+<table *ngIf="eventsData && eventsData.length > 0" id="eventTable">
+  <thead id="tableHead">
+    <tr>
+      <th id="s0" (click)="sortTable(0)">Date</th>
+      <th>Icon</th>
+      <th id="s2" (click)="sortTable(2)">Event Name</th>
+      <th id="s3" (click)="sortTable(3)">Genre</th>
+      <th id="s4" (click)="sortTable(4)">Venue Name</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let event of eventsData">
+      <td>{{event.dates.start.localDate}}<br>{{event.dates.start.localTime}}</td>
+      <td><img *ngIf="event.images" [src]="getImageUrl(event)" width="160" height="90" alt="No Event Image Available"></td>
+      <td><a href="#" (click)="displayEventCard(event.id, event._embedded.venues[0].name)">{{event.name}}</a></td>
+      <td>{{event.classifications[0].segment.name}}</td>
+      <td>{{event._embedded.venues[0].name}}</td>
+    </tr>
+</tbody>
+</table>
