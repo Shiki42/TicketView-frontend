@@ -18,6 +18,7 @@ export class LocationService {
       };
     } catch (error) {
       console.error('Request failed:', error);
+      return null;
     }
   }
 

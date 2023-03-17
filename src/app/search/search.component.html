@@ -1,4 +1,5 @@
 <p>search works!</p>
-<app-search-form>
+<app-search-form (searchResults)="handleSearchResults($event)" (clearResults)="onClearResults()">
     
 </app-search-form>
+<app-search-result #searchResultComponent [eventsData]="eventsData"></app-search-result>
