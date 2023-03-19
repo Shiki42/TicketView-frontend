@@ -1,0 +1,27 @@
+
+<div *ngIf="venueData">
+    <script>
+      console.log('venueData', venueData);
+    </script>
+    <table>
+      <tbody>
+        <ng-container *ngIf="venueData.address && venueData.address.line1">
+          <tr>
+            <th>Address:</th>
+            <td>{{ venueData.address.line1 }}</td>
+          </tr>
+        </ng-container>
+        <ng-container *ngIf="venueData.city && venueData.city.name && venueData.state && venueData.state.name">
+          <tr>
+            <th>City:</th>
+            <td>{{ venueData.city.name }}, {{ venueData.state.name }}</td>
+          </tr>
+        </ng-container>
+        <!-- Add similar rows for other fields -->
+      </tbody>
+    </table>
+    <button (click)="openGoogleMapModal()">Show venue on Google map</button>
+    <div class="my-google-map" *ngIf="showGoogleMap">
+        <google-map></google-map>
+      </div>
+  </div>
