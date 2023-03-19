@@ -19,6 +19,7 @@ export class SearchComponent {
 
   handleEventDetails(eventId: any) {
     this.selectedEventId = eventId;
+    console.log('eventId:', eventId);
   }
 
   handleSearchResults(results: any) {

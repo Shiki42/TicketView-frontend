@@ -2,5 +2,5 @@
 <app-search-form (searchResults)="handleSearchResults($event)" (clearResults)="onClearResults()">
     
 </app-search-form>
-<app-search-result #searchResultComponent [eventsData]="eventsData" (displayEventCard)="handleEventDetails($event)"></app-search-result>
+<app-search-result #searchResultComponent [eventsData]="eventsData" (selectedEventId)="handleEventDetails($event)"></app-search-result>
 <app-detail-card *ngIf="selectedEventId" [eventId]="selectedEventId" (closeCard)="closeEventDetails()"></app-detail-card>

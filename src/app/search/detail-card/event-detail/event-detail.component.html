@@ -1,0 +1,40 @@
+<div *ngIf="eventDetailData">
+    <div *ngIf="eventDetailData.name" id="cardEventName">{{eventDetailData.name}}</div>
+  
+    <div *ngIf="eventDetailData.dates.start.localDate && eventDetailData.dates.start.localTime" id="cardDate">
+      <strong class="lime-text-size-14">Date</strong><br>{{eventDetailData.dates.start.localDate}} {{eventDetailData.dates.start.localTime}}
+    </div>
+  
+    <div *ngIf="eventDetailData._embedded?.attractions?.length > 0" id="cardArtist">
+      <strong class="lime-text-size-14">Artist/Team</strong><br>
+      <ng-container *ngFor="let attraction of eventDetailData._embedded.attractions; let isLast = last">
+        <a [href]="attraction.url" style="text-decoration:none">{{attraction.name}}</a><ng-container *ngIf="!isLast"> | </ng-container>
+      </ng-container>
+    </div>
+  
+    <div *ngIf="eventDetailData._embedded?.venues?.length > 0" id="cardVenue">
+      <strong class="lime-text-size-14">Venue</strong><br>{{eventDetailData._embedded.venues[0].name}}
+    </div>
+  
+    <div *ngIf="eventDetailData.classifications?.length > 0" id="cardGenres">
+      <strong class="lime-text-size-14">Genres</strong><br>
+      {{getGenres(eventDetailData.classifications[0])}}
+    </div>
+  
+    <div *ngIf="eventDetailData.priceRanges?.length > 0" id="cardPriceRanges">
+      <strong class="lime-text-size-14">Price Ranges</strong><br>
+      {{getPriceRanges(eventDetailData.priceRanges)}}
+    </div>
+  
+    <div *ngIf="eventDetailData.dates.status?.code" id="cardTicketStatus">
+      <strong class="lime-text-size-14">Ticket status</strong><br>
+      <span [ngClass]="getTicketStatusClass(eventDetailData.dates.status.code)" class="badge">{{getTicketStatusMessage(eventDetailData.dates.status.code)}}</span>
+    </div>
+  
+    <div *ngIf="eventDetailData.url" id="cardBuyTickets">
+      <strong class="lime-text-size-14">Buy Tickets At: </strong><br>
+      <a [href]="eventDetailData.url" style="text-decoration:none">Ticketmaster</a>
+    </div>
+  
+    <img *ngIf="eventDetailData.seatmap?.staticUrl" [src]="eventDetailData.seatmap.staticUrl" id="cardSeatMap" alt="Seat Map">
+  </div>

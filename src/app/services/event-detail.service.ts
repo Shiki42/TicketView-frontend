@@ -8,7 +8,7 @@ export class EventDetailService {
   constructor(private http: HttpClient) {}
 
   fetchEventDetails(eventId: string) {
-    const url = `${serverUrl}/events/details${eventId}`;
+    const url = `${serverUrl}/events/details?event_id=${eventId}`;
     return this.http.get<any>(url).toPromise();
   }
 }
