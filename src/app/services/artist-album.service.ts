@@ -9,8 +9,8 @@ import { serverUrl } from './apikey';
 export class ArtistAlbumService {
   constructor(private http: HttpClient) {}
 
-  fetchArtistDetails(artistId: string) {
-    const url = `${serverUrl}/artist/album?keyword=${artistId}`;
+  fetchArtistAlbum(artistId: string) {
+    const url = `${serverUrl}/artist/album?id=${artistId}`;
     return this.http.get<any>(url).toPromise();
   }
 }
