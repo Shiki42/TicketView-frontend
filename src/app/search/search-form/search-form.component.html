@@ -15,40 +15,13 @@
     <option value="film">Film</option>
     <option value="misc">Miscellaneous</option>
   </select>
+  <label id="location_label" for="location">Location</label>
   <input formControlName="autoDetect" type="checkbox" id="auto-detect" (change)="toggleLocation()" />
+  <label for="auto-detect">Auto-detect location</label>
   <div *ngIf="!isLocationHidden" id="location-container">
     <input formControlName="location" type="text" name="location" id="location" [attr.required]="!isLocationHidden ? '' : null" />
-  </div>
-  <input type="submit" id="search_btn" value="SEARCH" />
+  </div><br>
+  <input type="submit" id="search_btn" value="SEARCH" (click)="onSubmit()"/>
   <input type="button" id="clear" value="CLEAR" (click)="clear()" />
 </form>
 
-<form class="frosted-glass">
-    <h2 class="searchHeader">Events Search</h2>
-    <label for="keyword">Keyword</label>
-    <br>
-    <input type="text" id="keyword" required>
-    <br>
-    <div id="distance-category-container">
-      <label for="distance">Distance(miles)</label>
-      <input type="number" id="distance" placeholder="10">
-      <label for="category">Category</label>
-      <select id="category" required>
-        <option value="default">Default</option>
-        <option value="music">Music</option>
-        <option value="sports">Sports</option>
-        <option value="arts">Arts & Theatre</option>
-        <option value="film">Film</option>
-        <option value="misc">Miscellaneous</option>
-      </select>
-    </div>
-    <label id="location_label" for="location">Location</label>
-    <input type="checkbox" id="auto-detect"  onchange="toggleLocation()">
-    <label for="auto-detect">Auto-detect location</label>
-    <div id="location-container">
-    <input type="text" name="location" id="location" required>
-    </div>
-    <br>
-    <input type="submit" id="search_btn" value="SEARCH">
-    <input type="button" id="clear" value="CLEAR" onclick="">
-  </form>

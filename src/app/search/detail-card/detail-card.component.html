@@ -1,1 +1,14 @@
 <p>detail-card works!</p>
+<app-event-detail [eventId]="selectedEventId"></app-event-detail>
+<mat-tab-group mat-align-tabs="center">
+    <mat-tab label="Events">
+        <app-event-detail [eventId]="selectedEventId"></app-event-detail>
+    </mat-tab>
+    <mat-tab label="Artist/Teams">
+        
+    </mat-tab>
+    <mat-tab label="Venue">
+    
+    </mat-tab>
+  </mat-tab-group>
+  <br>

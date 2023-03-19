@@ -1,12 +1,13 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitter  } from '@angular/core';
 @Component({
   selector: 'app-search-result',
   templateUrl: './search-result.component.html',
   styleUrls: ['./search-result.component.css']
 })
 
-export class SearchResultComponent implements OnInit {
+export class SearchResultComponent implements OnInit, OnChanges {
   @Input() eventsData: any;
+  @Output() selectedEventId = new EventEmitter<string>();
 
   sortedColumn = -1;
   sortOrder = 1;
@@ -20,11 +21,18 @@ export class SearchResultComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  displayEvents(): void {
-    if (this.eventsData._embedded) {
-      this.eventsData = this.eventsData._embedded.events;
+  ngOnChanges(changes: SimpleChanges): void {
+    if (changes['eventsData']) {
+      //console.log('eventsData:', this.eventsData);
     }
   }
+
+  displayEventCard(eventId: string, event: MouseEvent): void {
+    event.preventDefault();
+    this.selectedEventId.emit(eventId);
+  }
+
+
 
   sortTable(columnIndex: number): void {
     if (columnIndex !== this.sortedColumn) {
@@ -46,7 +54,6 @@ export class SearchResultComponent implements OnInit {
       }
     });
 
-    this.displayEvents();
   }
 
   getColumnField(x: any, columnIndex: number): string {
@@ -66,9 +73,7 @@ export class SearchResultComponent implements OnInit {
     }
   }
 
-  displayEventCard(eventId: string, venueName: string): void {
-    // Implement displayEventCard logic here.
-  }
+
 
   getImageUrl(event: any): string | null {
     const image = event.images.find((image: any) => image.width === 305);

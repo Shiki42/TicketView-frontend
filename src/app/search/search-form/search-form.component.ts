@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter  } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { LocationService } from '../../services/location.service';
 import { SearchService } from '../../services/search.service';
@@ -53,9 +53,11 @@ export class SearchFormComponent {
         const geoPoint = Geohash.encode(loc.latitude, loc.longitude, 9);
 
         const eventsData = await this.searchService.searchEvents(keyword!, dist, cat, geoPoint);
-        this.searchResults.emit(eventsData);
-      } else {
-        this.searchResults.emit(null);
+        if (eventsData._embedded && eventsData._embedded.events) {
+          this.searchResults.emit(eventsData._embedded.events);
+        } else {
+          this.searchResults.emit('no results');
+        }
       }
     }
   }

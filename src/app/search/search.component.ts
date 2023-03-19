@@ -8,14 +8,24 @@ import { SearchResultComponent } from './search-result/search-result.component';
 })
 
 export class SearchComponent {
+
+  eventsData: any;
+  selectedEventId: string | null = null;
+
   @ViewChild('searchResultComponent') searchResultComponent!: SearchResultComponent;
   onClearResults() {   
     this.searchResultComponent.clearResults();
   }
 
-  eventsData: any;
+  handleEventDetails(eventId: any) {
+    this.selectedEventId = eventId;
+  }
 
   handleSearchResults(results: any) {
     this.eventsData = results;
+  }
+
+  closeEventDetails() {
+    this.selectedEventId = null;
   }
 }
