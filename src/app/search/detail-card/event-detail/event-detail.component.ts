@@ -1,29 +1,15 @@
 import { Component, Input, OnChanges, SimpleChanges, Output, EventEmitter } from '@angular/core';
-import { EventDetailService } from '../../../services/event-detail.service';
 
 @Component({
   selector: 'app-event-detail',
   templateUrl: './event-detail.component.html',
   styleUrls: ['./event-detail.component.css']
 })
-export class EventDetailComponent implements OnChanges {
-  @Input() eventId: string | null = null;
+export class EventDetailComponent  {
+  @Input() eventDetailData: any | null = null;
   @Output() closeCard = new EventEmitter<void>();
 
-  eventDetailData: any;
-
-  constructor(private eventDetailService: EventDetailService) {}
-
-  ngOnChanges(changes: SimpleChanges): void {
-    if (changes['eventId'] && this.eventId) {
-      this.fetchEventDetails(this.eventId);
-    }
-  }
-
-  async fetchEventDetails(eventId: string) {
-    this.eventDetailData = await this.eventDetailService.fetchEventDetails(eventId);
-
-  }
+  constructor() {}
 
   getGenres(classification: any): string {
     const names = [classification.subGenre?.name, classification.genre?.name, classification.segment?.name, classification.subType?.name, classification.type?.name];
