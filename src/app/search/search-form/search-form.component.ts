@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { LocationService } from '../../services/location.service';
 import { SearchService } from '../../services/search.service';
@@ -11,7 +11,7 @@ import Geohash from '../../services/geohash';
 export class SearchFormComponent {
   @Output() clearResults = new EventEmitter<void>();
   @Output() searchResults = new EventEmitter<any>();
-
+  @ViewChild('searchFormElement', { static: true }) searchFormElement!: ElementRef<HTMLFormElement>;
   isLocationHidden = false;
 
   searchForm = new FormGroup({
@@ -19,7 +19,7 @@ export class SearchFormComponent {
     distance: new FormControl(''),
     category: new FormControl('default'),
     autoDetect: new FormControl(false),
-    location: new FormControl(''),
+    location: new FormControl('',Validators.required),
   });
 
   clear() {
@@ -59,6 +59,9 @@ export class SearchFormComponent {
           this.searchResults.emit('no results');
         }
       }
+    } else {
+      //this.searchForm.markAllAsTouched();
+      this.searchFormElement.nativeElement.reportValidity();
     }
   }
 

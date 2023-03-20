@@ -1,6 +1,6 @@
 <p>search-form works!</p>
 
-<form [formGroup]="searchForm" class="frosted-glass">
+<form [formGroup]="searchForm" class="frosted-glass" #searchFormElement>
   <h2 class="searchHeader">Events Search</h2>
   <label for="keyword">Keyword</label><br>
   <input formControlName="keyword" type="text" id="keyword" required /><br>
@@ -19,7 +19,7 @@
   <input formControlName="autoDetect" type="checkbox" id="auto-detect" (change)="toggleLocation()" />
   <label for="auto-detect">Auto-detect location</label>
   <div *ngIf="!isLocationHidden" id="location-container">
-    <input formControlName="location" type="text" name="location" id="location" [attr.required]="!isLocationHidden ? '' : null" />
+    <input formControlName="location" type="text" name="location" id="location" [attr.required]="!isLocationHidden" />
   </div><br>
   <input type="submit" id="search_btn" value="SEARCH" (click)="onSubmit()"/>
   <input type="button" id="clear" value="CLEAR" (click)="clear()" />
