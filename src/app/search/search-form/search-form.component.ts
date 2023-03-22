@@ -1,8 +1,7 @@
 import { Component, Output, OnInit, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
 import { Observable, of  } from 'rxjs';
-import { map, startWith } from 'rxjs/operators';
-
+import { map, startWith, debounceTime, distinctUntilChanged, switchMap } from 'rxjs/operators';
 import { LocationService } from '../../services/location.service';
 import { SearchService } from '../../services/search.service';
 import { AutoCompleteService } from '../../services/auto-complete.service';
@@ -51,9 +50,23 @@ export class SearchFormComponent implements OnInit {
   ngOnInit(): void {
     this.autoCompleteResults = this.searchForm.controls['keyword'].valueChanges.pipe(
       startWith(''),
-      map((value) => this._filter(value ?? ''))
+      debounceTime(100), // wait for 300ms after the user stops typing
+      distinctUntilChanged(), // fetch results only when the keyword value changes
+      switchMap((value) => this._filter(value ?? ''))
     );
   }
+
+  private async _filter(value: string): Promise<string[]> {
+    if (value.length < 3) {
+      return [];
+    }
+  
+    const results = await this.autoCompleteService.fetchAutoCompletes(value);
+    const autoCompleteResultsList = results._embedded.events.map((event:any) => event.name);
+  
+    return autoCompleteResultsList;
+  }
+  
   async onSubmit() {
     if (this.searchForm.valid) {
       const { keyword, distance, category, autoDetect, location } = this.searchForm.value;
@@ -96,14 +109,6 @@ export class SearchFormComponent implements OnInit {
     }
   }
 
-  private _filter(value: string): string[] {
-    if (value.length < 3) return [];
 
-    this.autoCompleteService.fetchAutoCompletes(value).then((results) => {
-      this.autoCompleteResultsList = results._embedded.events.map((event:any) => event.name);
-    });
-
-    return this.autoCompleteResultsList;
-  }
   
 }
