@@ -1,17 +1,26 @@
-import { Component, Output, EventEmitter, ViewChild, ElementRef } from '@angular/core';
+import { Component, Output, OnInit, EventEmitter, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormControl, Validators} from '@angular/forms';
+import { Observable, of  } from 'rxjs';
+import { map, startWith } from 'rxjs/operators';
+
 import { LocationService } from '../../services/location.service';
 import { SearchService } from '../../services/search.service';
+import { AutoCompleteService } from '../../services/auto-complete.service';
 import Geohash from '../../services/geohash';
+
 @Component({
   selector: 'app-search-form',
   templateUrl: './search-form.component.html',
   styleUrls: ['./search-form.component.css']
 })
-export class SearchFormComponent {
+export class SearchFormComponent implements OnInit {
   @Output() clearResults = new EventEmitter<void>();
   @Output() searchResults = new EventEmitter<any>();
   @ViewChild('searchFormElement', { static: true }) searchFormElement!: ElementRef<HTMLFormElement>;
+
+  autoCompleteResults: Observable<string[]>;
+  autoCompleteResultsList: string[] = [];
+
   isLocationHidden = false;
 
   searchForm = new FormGroup({
@@ -34,8 +43,17 @@ export class SearchFormComponent {
     this.clearResults.emit();
   }
   
-  constructor(private locationService: LocationService, private searchService: SearchService) {}
+  constructor(private locationService: LocationService, 
+    private searchService: SearchService, private autoCompleteService: AutoCompleteService) {
+      this.autoCompleteResults = of([]); 
+    }
 
+  ngOnInit(): void {
+    this.autoCompleteResults = this.searchForm.controls['keyword'].valueChanges.pipe(
+      startWith(''),
+      map((value) => this._filter(value ?? ''))
+    );
+  }
   async onSubmit() {
     if (this.searchForm.valid) {
       const { keyword, distance, category, autoDetect, location } = this.searchForm.value;
@@ -76,6 +94,16 @@ export class SearchFormComponent {
       }
       locationControl.updateValueAndValidity();
     }
+  }
+
+  private _filter(value: string): string[] {
+    if (value.length < 3) return [];
+
+    this.autoCompleteService.fetchAutoCompletes(value).then((results) => {
+      this.autoCompleteResultsList = results._embedded.events.map((event:any) => event.name);
+    });
+
+    return this.autoCompleteResultsList;
   }
   
 }

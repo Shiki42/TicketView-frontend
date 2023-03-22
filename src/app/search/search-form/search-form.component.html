@@ -3,8 +3,12 @@
 <form [formGroup]="searchForm" class="frosted-glass" #searchFormElement>
   <h2 class="searchHeader">Events Search</h2>
   <label for="keyword">Keyword</label><br>
-  <input formControlName="keyword" type="text" id="keyword" required /><br>
-  <label for="distance">Distance(miles)</label>
+    <input formControlName="keyword" type="text" id="keyword" required matInput [matAutocomplete]="auto" />
+    <mat-autocomplete #auto="matAutocomplete">
+      <mat-option *ngFor="let option of autoCompleteResults | async" [value]="option">
+        {{ option }}
+      </mat-option>
+    </mat-autocomplete>
   <input formControlName="distance" type="number" id="distance" placeholder="10" />
   <label for="category">Category</label>
   <select formControlName="category" id="category" required>
