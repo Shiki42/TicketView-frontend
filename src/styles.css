@@ -7,3 +7,8 @@ body {
     background-size: cover;
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+.frosted-glass {
+    background: rgba(255, 255, 255, 0.2);
+    backdrop-filter: blur(10px);
+    border-radius: 10px;
+    }

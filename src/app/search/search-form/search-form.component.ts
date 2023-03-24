@@ -102,6 +102,7 @@ export class SearchFormComponent implements OnInit {
     if (locationControl) {
       if (this.isLocationHidden) {
         locationControl.clearValidators();
+        locationControl.setValue('');
       } else {
         locationControl.setValidators(Validators.required);
       }

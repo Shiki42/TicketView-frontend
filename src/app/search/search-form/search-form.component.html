@@ -1,4 +1,3 @@
-<p>search-form works!</p>
 
 <form [formGroup]="searchForm" class="frosted-glass" #searchFormElement>
   <h2 class="searchHeader">Events Search</h2>
@@ -9,6 +8,7 @@
         {{ option }}
       </mat-option>
     </mat-autocomplete>
+  <label for="distance">Distance</label><br>
   <input formControlName="distance" type="number" id="distance" placeholder="10" />
   <label for="category">Category</label>
   <select formControlName="category" id="category" required>
@@ -20,11 +20,14 @@
     <option value="misc">Miscellaneous</option>
   </select>
   <label id="location_label" for="location">Location</label>
-  <input formControlName="autoDetect" type="checkbox" id="auto-detect" (change)="toggleLocation()" />
-  <label for="auto-detect">Auto-detect location</label>
+
   <div *ngIf="!isLocationHidden" id="location-container">
     <input formControlName="location" type="text" name="location" id="location" [attr.required]="!isLocationHidden" />
-  </div><br>
+  </div>
+  <div>
+  <input formControlName="autoDetect" type="checkbox" id="auto-detect" (change)="toggleLocation()" />
+  <label for="auto-detect">Auto-detect location</label><br>
+  </div>
   <input type="submit" id="search_btn" value="SEARCH" (click)="onSubmit()"/>
   <input type="button" id="clear" value="CLEAR" (click)="clear()" />
 </form>
