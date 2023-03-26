@@ -9,6 +9,7 @@ import { SearchResultComponent } from './search-result/search-result.component';
 
 export class SearchComponent {
 
+  cardClosed: boolean = true;
   eventsData: any;
   selectedEventId: string | null = null;
 
@@ -19,6 +20,7 @@ export class SearchComponent {
 
   handleEventDetails(eventId: any) {
     this.selectedEventId = eventId;
+    this.cardClosed = false;
   }
 
   handleSearchResults(results: any) {
@@ -26,6 +28,8 @@ export class SearchComponent {
   }
 
   closeEventDetails() {
+    console.log('closeEventDetails');
     this.selectedEventId = null;
+    this.cardClosed = true;
   }
 }

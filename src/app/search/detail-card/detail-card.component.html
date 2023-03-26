@@ -1,3 +1,6 @@
+<div *ngIf="!isHidden">
+
+<div class="back-btn" (click)="backClicked()">Back</div>
 <mat-tab-group mat-align-tabs="center" class="frosted-glass">
     <mat-tab label="Events">
         <app-event-detail [eventDetailData]="eventDetailData"></app-event-detail>
@@ -10,3 +13,5 @@
     </mat-tab>
   </mat-tab-group>
   <br>
+
+</div>

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, Output, OnInit, OnChanges, SimpleChanges, EventEmitter } from '@angular/core';
 import { EventDetailService } from '../../services/event-detail.service';
 import { ArtistService } from 'src/app/services/artist.service';
 import { VenueService } from 'src/app/services/venue.service';
@@ -11,6 +11,8 @@ import { ArtistAlbumService } from 'src/app/services/artist-album.service';
 })
 export class DetailCardComponent implements OnInit, OnChanges {
   @Input() eventId: string | null = null;
+  @Output() cardClosed  = new EventEmitter<void>();
+  isHidden: boolean = false;
 
   eventDetailData: any | null = null;
   artistDataList: any | null = null;
@@ -24,6 +26,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventId'] && this.eventId) {
+      this.isHidden = false;
       this.fetchData(this.eventId);
     }
   }
@@ -32,20 +35,20 @@ export class DetailCardComponent implements OnInit, OnChanges {
     this.eventDetailData = await this.eventDetailService.fetchEventDetails(eventId);
     this.venueData = await this.venueService.fetchVenueDetails(this.eventDetailData._embedded.venues[0].name);
     this.venueData = this.venueData._embedded.venues[0];
-    console.log('venueData', this.venueData)
+    //console.log('venueData', this.venueData)
     this.artistDataList = [];
   
     if (this.eventDetailData._embedded && this.eventDetailData._embedded.attractions) {
       for (const artist of this.eventDetailData._embedded.attractions) {
         if (artist.classifications && artist.classifications[0].segment.name === 'Music') {
-          console.log('classifications', artist.classifications)
+          //console.log('classifications', artist.classifications)
           this.artistService.fetchArtistDetails(artist.name).then(async (artistResponse: any) => {
             //const matchedArtist = artistResponse.body.artists.items.find(
             //  (item: any) => item.name === artist.name
             //);
-            console.log('artistResponse', artistResponse)
+            //console.log('artistResponse', artistResponse)
             const firstResult = artistResponse.artists.items[0];
-            console.log('firstResult', firstResult)
+            //console.log('firstResult', firstResult)
             if (firstResult) {
               const artistData = {
                 image: firstResult.images[0],
@@ -66,6 +69,11 @@ export class DetailCardComponent implements OnInit, OnChanges {
         }
       }
     }
+  }
+
+  backClicked(): void {
+    this.cardClosed.emit();
+    this.isHidden = true;
   }
 
 }

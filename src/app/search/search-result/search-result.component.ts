@@ -6,9 +6,10 @@ import { Component, OnInit, Input, OnChanges, SimpleChanges, Output, EventEmitte
 })
 
 export class SearchResultComponent implements OnInit, OnChanges {
+  isHidden: boolean = false;
   @Input() eventsData: any;
   @Output() selectedEventId = new EventEmitter<string>();
-
+  @Input() cardClosed: boolean = true;
   sortedColumn = -1;
   sortOrder = 1;
 
@@ -25,11 +26,17 @@ export class SearchResultComponent implements OnInit, OnChanges {
     if (changes['eventsData']) {
       //console.log('eventsData:', this.eventsData);
     }
+    if (changes['cardClosed']) {
+      console.log('cardClosed in result:', this.cardClosed);
+      this.isHidden = !this.cardClosed;
+    }
   }
 
   displayEventCard(eventId: string, event: MouseEvent): void {
     event.preventDefault();
     this.selectedEventId.emit(eventId);
+    //this.isHidden = true;
+    console.log('result.isHidden:', this.isHidden);
   }
 
 

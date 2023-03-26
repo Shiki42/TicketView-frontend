@@ -1,3 +1,5 @@
+<div *ngIf="!isHidden">
+
 <div *ngIf="eventsData === 'no results' || (eventsData && eventsData.length === 0)" class="no-results">No records found.</div>
 <table *ngIf="eventsData && eventsData !== 'no results' && eventsData.length > 0" id="eventTable">
   <thead id="tableHead">
@@ -19,3 +21,5 @@
     </tr>
 </tbody>
 </table>
+
+</div>
