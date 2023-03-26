@@ -8,20 +8,28 @@
         {{ option }}
       </mat-option>
     </mat-autocomplete>
-  <label for="distance">Distance</label><br>
-  <input formControlName="distance" type="number" id="distance" placeholder="10" />
-  <label for="category">Category</label>
-  <select formControlName="category" id="category" required>
-    <option value="default">Default</option>
-    <option value="music">Music</option>
-    <option value="sports">Sports</option>
-    <option value="arts">Arts & Theatre</option>
-    <option value="film">Film</option>
-    <option value="misc">Miscellaneous</option>
-  </select>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <label for="distance">Distance</label><br>
+          <input formControlName="distance" type="number" id="distance" placeholder="10" />
+        </div>
+        <div class="col-md-6">
+          <label for="category">Category</label>
+          <select formControlName="category" id="category" required>
+            <option value="default">Default</option>
+            <option value="music">Music</option>
+            <option value="sports">Sports</option>
+            <option value="arts">Arts & Theatre</option>
+            <option value="film">Film</option>
+            <option value="misc">Miscellaneous</option>
+          </select>
+        </div>
+      </div>
+    </div>
   <label id="location_label" for="location">Location</label>
 
-  <div *ngIf="!isLocationHidden" id="location-container">
+  <div id="location-container">
     <input formControlName="location" type="text" name="location" id="location" [attr.required]="!isLocationHidden" />
   </div>
   <div>

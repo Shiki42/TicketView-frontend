@@ -1,0 +1,33 @@
+.lime-text-size-14 {
+    color: 	rgb(127, 255, 212);
+    font-size: 18px;
+    }
+    
+.badge {
+    margin-top: 5px;
+    display: inline-block;
+    padding: 8px 12px;
+    border-radius: 10px;
+    font-weight: bold;
+    font-size: 14px;
+  }
+  
+.on-sale {
+background-color: green;
+color: white;
+}
+
+.off-sale {
+background-color: red;
+color: white;
+}
+
+.cancelled {
+background-color: black;
+color: white;
+}
+
+.postponed, .rescheduled {
+background-color: orange;
+color: white;
+}

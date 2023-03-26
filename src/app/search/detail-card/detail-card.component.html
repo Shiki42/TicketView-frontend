@@ -1,7 +1,8 @@
-<div *ngIf="!isHidden">
-
+<div *ngIf="!isHidden" class="frosted-glass">
+    
 <div class="back-btn" (click)="backClicked()">Back</div>
-<mat-tab-group mat-align-tabs="center" class="frosted-glass">
+<div *ngIf="eventDetailData.name" id="cardEventName">{{eventDetailData.name}}</div>
+<mat-tab-group mat-align-tabs="center" >
     <mat-tab label="Events">
         <app-event-detail [eventDetailData]="eventDetailData"></app-event-detail>
     </mat-tab>
