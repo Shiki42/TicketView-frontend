@@ -29,3 +29,40 @@
     transform: translate(-50%, -50%);
     font-weight: bold;
   }
+
+  .album-cover-image {
+    width: 200px;
+    height: 200px;
+    margin: 20px 35px 0px 35px;
+    object-fit: cover; /* To maintain the aspect ratio while resizing the image */
+  }
+
+.no-results,
+.artist-data {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.carousel-container {
+  width: 100%;
+}
+
+.row {
+  width: 100%;
+  justify-content: center;
+}
+
+.custom-row-width {
+    width: 800px;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+.centered-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
