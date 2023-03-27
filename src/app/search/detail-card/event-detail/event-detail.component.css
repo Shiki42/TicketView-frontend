@@ -1,3 +1,7 @@
+.row {
+  color:aliceblue
+}
+
 .lime-text-size-14 {
     color: 	rgb(127, 255, 212);
     font-size: 18px;
@@ -26,6 +30,7 @@ color: white;
 background-color: black;
 color: white;
 }
+
 
 .postponed, .rescheduled {
 background-color: orange;

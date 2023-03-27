@@ -63,7 +63,6 @@ export class DetailCardComponent implements OnInit, OnChanges {
               artistData.albumCoverImages = albums.items.map((album: any) => album.images[0]);
   
               this.artistDataList.push(artistData);
-              console.log('artistDataList', this.artistDataList)
             }
           });
         }

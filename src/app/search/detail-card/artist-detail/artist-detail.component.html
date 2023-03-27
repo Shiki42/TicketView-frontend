@@ -1,28 +1,46 @@
-<div *ngIf="artistDataList.length == 0" class="no-results">No records found.</div>
+<div *ngIf="artistDataList && artistDataList.length == 0" class="no-results">No records found.</div>
 <ng-container *ngIf="artistDataList && artistDataList.length > 0">
     <div class="carousel-container">
       <carousel [noWrap]="artistDataList.length === 1" [noPause]="true" [interval]="0">
         <slide *ngFor="let artistData of artistDataList">
           <div class="artist-data">
 
-            <img *ngIf="artistData.image" [src]="artistData.image.url" [alt]="artistData.name">
-            <h4>Name: {{artistData.name}}</h4>
-
-            <p>Popularity</p>
-            <div>{{artistData.popularity}}</div>
-
-            <p>Followers</p>
-            <div>{{artistData.follwers.total}}</div>
-
-            <p>Spotify Link</p>
-            <a [href]="artistData.external_urls.spotify" target="_blank">{{artistData.external_urls.spotify}}</a>
-            
+            <div class="row">
+              <div class="col-lg col-sm-12">
+                <img *ngIf="artistData.image" [src]="artistData.image.url" [alt]="artistData.name" class="artist-image">
+                <h4 class="lime-text-size-14">{{artistData.name}}</h4>
+              </div>
+              <div class="col-lg col-sm-12">
+                <p class="lime-text-size-14">Popularity</p>
+                <div class="popularity-container">
+                  <mat-progress-spinner
+                    [value]="artistData.popularity"
+                    mode="determinate"
+                    color="warn"
+                    diameter="50"
+                    strokeWidth="5">
+                  </mat-progress-spinner>
+                  <span class="popularity-value">{{artistData.popularity}}</span>
+                </div>
+              </div>
+              <div class="col-lg col-sm-12">
+                <p class="lime-text-size-14">Followers</p>
+                <div>{{artistData.followers}}</div>
+              </div>
+              <div class="col-lg col-sm-12">
+                <p class="lime-text-size-14">Spotify Link</p>
+                <a [href]="artistData.spotifyUrl" target="_blank">
+                  <i class="bi bi-spotify"></i>
+                </a>
+              </div>
+            </div>
             <div class="album-covers">
               <h5>Album Covers</h5>
               <ng-container *ngFor="let albumCoverImage of artistData.albumCoverImages">
                 <img *ngIf="albumCoverImage" [src]="albumCoverImage.url" [alt]="'Album Cover'">
               </ng-container>
             </div>
+
           </div>
         </slide>
       </carousel>

@@ -6,5 +6,5 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./artist-detail.component.css']
 })
 export class ArtistDetailComponent {
-  @Input() artistDataList: any | null = null;
+  @Input() artistDataList: any = [];
 }

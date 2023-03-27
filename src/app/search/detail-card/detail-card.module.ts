@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { GoogleMapsModule } from '@angular/google-maps'
 import { EventDetailComponent } from './event-detail/event-detail.component';
 import { DetailCardComponent } from './detail-card.component';
@@ -21,7 +22,8 @@ import { VenueDetailComponent } from './venue-detail/venue-detail.component';
     CommonModule,
     MatTabsModule,  
     CarouselModule.forRoot(),
-    GoogleMapsModule
+    GoogleMapsModule,
+    MatProgressSpinnerModule
   ],
   exports: [DetailCardComponent]
 })
