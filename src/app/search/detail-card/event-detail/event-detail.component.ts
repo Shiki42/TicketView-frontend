@@ -58,4 +58,19 @@ export class EventDetailComponent  {
   closeEventDetails() {
     // Implement the logic to close the event details card
   }
+
+  shareOnTwitter() {
+    const eventName = this.eventDetailData.name;
+    const eventUrl = this.eventDetailData.url;
+    const tweetText = `Check ${eventName} on Ticketmaster: ${eventUrl}`;
+    const twitterUrl = `https://twitter.com/intent/tweet?text=${encodeURIComponent(tweetText)}`;
+    window.open(twitterUrl, '_blank');
+  }
+  
+  shareOnFacebook() {
+    const eventUrl = this.eventDetailData.url;
+    const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(eventUrl)}`;
+    window.open(facebookUrl, '_blank');
+  }
+  
 }

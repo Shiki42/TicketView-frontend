@@ -13,13 +13,9 @@ table {
   }
   
   th {
-    background-color: #f2f2f2;
     cursor: pointer;
   }
   
-  tr {
-    background-color: #f2f2f2;
-  }
   
   tr:hover {
     background-color: #ddd;
@@ -44,3 +40,13 @@ table {
   .nameLink:hover {
     color: blue;
   }
+
+  .custom-table {
+    background-color: #232323;
+    color: #fff;
+  }
+  
+  .custom-table tbody tr:nth-child(odd) {
+    background-color: #2e2e2e;
+  }
+  

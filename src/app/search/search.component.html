@@ -1,6 +1,8 @@
-
+<div class="search">
 <app-search-form (searchResults)="handleSearchResults($event)" (clearResults)="onClearResults()">
     
 </app-search-form>
 <app-search-result #searchResultComponent [eventsData]="eventsData" [cardClosed]="cardClosed" (selectedEventId)="handleEventDetails($event)"></app-search-result>
 <app-detail-card *ngIf="selectedEventId" [eventId]="selectedEventId" (cardClosed)="closeEventDetails()"></app-detail-card>
+
+</div>

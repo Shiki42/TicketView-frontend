@@ -31,3 +31,28 @@ color: white;
 background-color: orange;
 color: white;
 }
+
+.share-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.share-icon {
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.bi-twitter {
+  color: #1DA1F2;
+}
+
+.bi-facebook {
+  color: #1877F2;
+}
+
+.img-fluid {
+  width: 100%;
+  height: auto;
+}

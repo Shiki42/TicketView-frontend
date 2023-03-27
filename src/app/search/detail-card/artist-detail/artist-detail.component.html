@@ -1,12 +1,22 @@
+<div *ngIf="artistDataList.length == 0" class="no-results">No records found.</div>
 <ng-container *ngIf="artistDataList && artistDataList.length > 0">
     <div class="carousel-container">
       <carousel [noWrap]="artistDataList.length === 1" [noPause]="true" [interval]="0">
         <slide *ngFor="let artistData of artistDataList">
           <div class="artist-data">
-            <h4>Artist Information</h4>
-            <p>Spotify URL: <a [href]="artistData.spotifyUrl" target="_blank">{{artistData.spotifyUrl}}</a></p>
-            <p>Popularity: {{artistData.popularity}}</p>
+
             <img *ngIf="artistData.image" [src]="artistData.image.url" [alt]="artistData.name">
+            <h4>Name: {{artistData.name}}</h4>
+
+            <p>Popularity</p>
+            <div>{{artistData.popularity}}</div>
+
+            <p>Followers</p>
+            <div>{{artistData.follwers.total}}</div>
+
+            <p>Spotify Link</p>
+            <a [href]="artistData.external_urls.spotify" target="_blank">{{artistData.external_urls.spotify}}</a>
+            
             <div class="album-covers">
               <h5>Album Covers</h5>
               <ng-container *ngFor="let albumCoverImage of artistData.albumCoverImages">
