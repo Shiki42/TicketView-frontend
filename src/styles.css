@@ -7,3 +7,12 @@ body {
     background-size: cover;
     margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
 
+/* Adjust the z-index of the modal backdrop */
+.modal-backdrop {
+    z-index: 1040 !important;
+  }
+  
+  /* Adjust the z-index of the modal */
+  .modal {
+    z-index: 1050 !important;
+  }

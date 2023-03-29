@@ -62,7 +62,7 @@ export class SearchFormComponent implements OnInit {
     }
   
     const results = await this.autoCompleteService.fetchAutoCompletes(value);
-    const autoCompleteResultsList = results._embedded.events.map((event:any) => event.name);
+    const autoCompleteResultsList = results._embedded.attractions.map((attraction:any) => attraction.name);
   
     return autoCompleteResultsList;
   }

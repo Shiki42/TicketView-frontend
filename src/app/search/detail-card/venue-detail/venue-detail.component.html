@@ -3,25 +3,81 @@
     <script>
       console.log('venueData', venueData);
     </script>
-    <table>
-      <tbody>
-        <ng-container *ngIf="venueData.address && venueData.address.line1">
-          <tr>
-            <th>Address:</th>
-            <td>{{ venueData.address.line1 }}</td>
-          </tr>
-        </ng-container>
-        <ng-container *ngIf="venueData.city && venueData.city.name && venueData.state && venueData.state.name">
-          <tr>
-            <th>City:</th>
-            <td>{{ venueData.city.name }}, {{ venueData.state.name }}</td>
-          </tr>
-        </ng-container>
-        <!-- Add similar rows for other fields -->
-      </tbody>
-    </table>
-    <button (click)="openGoogleMapModal()">Show venue on Google map</button>
-    <div class="my-google-map" *ngIf="showGoogleMap">
-        <google-map></google-map>
+
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div *ngIf="venueData.address && venueData.address.line1">
+            <strong>Address:</strong>
+            {{ venueData.address.line1 }}
+          </div>
+          <div *ngIf="venueData.city && venueData.city.name && venueData.state && venueData.state.name">
+            <strong>City:</strong>
+            {{ venueData.city.name }}, {{ venueData.state.name }}
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="detail-box" *ngIf="venueData.boxOfficeInfo && venueData.boxOfficeInfo.openHoursDetail">
+            <strong>Open Hours:</strong>
+            <span #openHoursContent class="detail-text detail-text-openHours" [style.max-height]="showMoreOpenHours ? 'none' : '3em'" [style.width.px]="maxWidth">{{ venueData.boxOfficeInfo.openHoursDetail }}</span>
+            <button
+  *ngIf="isContentLong(venueData.boxOfficeInfo.openHoursDetail)"
+  (click)="toggleShowMore('openHours')"
+  class="show-more-button"
+>
+  {{ showMoreOpenHours ? 'Show Less &#8963;' : 'Show More &#8964;' }}
+</button>           
+          </div>
+          <div class="detail-box" *ngIf="venueData.generalInfo && venueData.generalInfo.generalRule">
+            <strong>General Rule:</strong>
+            <span #generalRuleContent class="detail-text detail-text-generalRule" [style.max-height]="showMoreGeneralRule ? 'none' : '3em'" [style.width.px]="maxWidth">{{ venueData.generalInfo.generalRule }}</span>
+            <button
+  *ngIf="isContentLong(venueData.generalInfo.generalRule)"
+  (click)="toggleShowMore('generalRule')"
+  class="show-more-button"
+>
+  {{ showMoreGeneralRule ? 'Show Less &#8963;' : 'Show More &#8964;' }}
+</button>
+          </div>
+          <div class="detail-box" *ngIf="venueData.generalInfo && venueData.generalInfo.childRule">
+            <strong>Child Rule:</strong>
+            <span #childRuleContent class="detail-text detail-text-childRule" [style.max-height]="showMoreChildRule ? 'none' : '3em'" [style.width.px]="maxWidth">{{ venueData.generalInfo.childRule }}</span>
+            <button
+  *ngIf="isContentLong(venueData.generalInfo.childRule)"
+  (click)="toggleShowMore('childRule')"
+  class="show-more-button"
+>
+  {{ showMoreChildRule ? 'Show Less &#8963;' : 'Show More &#8964;' }}
+</button>
+          </div>
+        </div>
       </div>
-  </div>
+    </div>
+
+    <!-- Bootstrap modal -->
+    <button (click)="showModal()">Open Map Modal</button>
+
+    <div bsModal #mapModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" [config]="{backdrop: false, keyboard: false}">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <!-- Modal content -->
+          <div class="modal-header">
+            <h5 class="modal-title" id="mapModalLabel">Venue Location</h5>
+            <button type="button" class="close" aria-label="Close" (click)="hideModal()">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="my-google-map">
+              <google-map *ngIf="venueData.location" [options]="{ center: {lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}, zoom: 14 }">
+                <map-marker [position]="{lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}"></map-marker>
+              </google-map>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

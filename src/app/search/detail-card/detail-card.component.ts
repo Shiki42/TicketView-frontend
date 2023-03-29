@@ -33,9 +33,9 @@ export class DetailCardComponent implements OnInit, OnChanges {
 
   async fetchData(eventId: string) {
     this.eventDetailData = await this.eventDetailService.fetchEventDetails(eventId);
-    this.venueData = await this.venueService.fetchVenueDetails(this.eventDetailData._embedded.venues[0].name);
-    this.venueData = this.venueData._embedded.venues[0];
-    //console.log('venueData', this.venueData)
+    const venueDataRes = await this.venueService.fetchVenueDetails(this.eventDetailData._embedded.venues[0].name);
+    this.venueData = venueDataRes._embedded.venues[0];
+    console.log('detail-card venueData', this.venueData)
     this.artistDataList = [];
   
     if (this.eventDetailData._embedded && this.eventDetailData._embedded.attractions) {

@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { MatTabsModule } from '@angular/material/tabs';
 import { CarouselModule } from 'ngx-bootstrap/carousel';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
@@ -20,6 +21,7 @@ import { VenueDetailComponent } from './venue-detail/venue-detail.component';
   ],
   imports: [
     CommonModule,
+    ModalModule.forRoot(),
     MatTabsModule,  
     CarouselModule.forRoot(),
     GoogleMapsModule,
