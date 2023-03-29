@@ -69,9 +69,11 @@
           </div>
           <div class="modal-body">
             <div class="my-google-map">
-              <google-map *ngIf="venueData.location" [options]="{ center: {lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}, zoom: 14 }">
-                <map-marker [position]="{lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}"></map-marker>
+              <div class="my-google-container">
+              <google-map *ngIf="venueData.location" class="map" [options]="{ center: {lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}, zoom: 14 }">
+                <map-marker [position]="{lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}"></map-marker>              
               </google-map>
+              </div>
             </div>
           </div>
           <div class="modal-footer">
