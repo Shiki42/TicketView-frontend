@@ -1,1 +1,24 @@
-<p>favorite works!</p>
+<table>
+    <thead>
+      <tr>
+        <th>Index</th>
+        <th>Date</th>
+        <th>Event</th>
+        <th>Category</th>
+        <th>Venue</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let event of favoriteEvents; let i = index">
+        <td>{{ i + 1 }}</td>
+        <td>{{ event.date }}</td>
+        <td>{{ event.event }}</td>
+        <td>{{ event.category }}</td>
+        <td>{{ event.venue }}</td>
+        <td>
+          <button (click)="removeFavoriteEvent(event.event)">Remove</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>

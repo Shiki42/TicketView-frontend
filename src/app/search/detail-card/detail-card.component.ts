@@ -4,15 +4,24 @@ import { ArtistService } from 'src/app/services/artist.service';
 import { VenueService } from 'src/app/services/venue.service';
 import { ArtistAlbumService } from 'src/app/services/artist-album.service';
 
+interface FavoriteEvent {
+  date: Date;
+  event: string;
+  category: string;
+  venue: string;
+}
+
 @Component({
   selector: 'app-detail-card',
   templateUrl: './detail-card.component.html',
   styleUrls: ['./detail-card.component.css']
 })
 export class DetailCardComponent implements OnInit, OnChanges {
+  
   @Input() eventId: string | null = null;
   @Output() cardClosed  = new EventEmitter<void>();
 
+  isFavorite: boolean = false;
   isHidden: boolean = false;
 
   eventDetailData: any | null = null;
@@ -20,15 +29,25 @@ export class DetailCardComponent implements OnInit, OnChanges {
   venueData: any | null = null;
 
   constructor(private eventDetailService: EventDetailService, private artistService : ArtistService,
-     private venueService : VenueService, private albumService : ArtistAlbumService) {}
+    private venueService : VenueService, private albumService : ArtistAlbumService) {}
 
   ngOnInit(): void {
+    this.initializeFavoriteEvents();
+    this.checkIfEventIsFavorite();
+  }
+
+  initializeFavoriteEvents() {
+    const favoriteEventsKey = 'favorite_events';
+    if (!localStorage.getItem(favoriteEventsKey)) {
+      localStorage.setItem(favoriteEventsKey, JSON.stringify([]));
+    }
   }
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventId'] && this.eventId) {
       //this.isHidden = false;
       this.fetchData(this.eventId);
+      this.checkIfEventIsFavorite();
     }
   }
 
@@ -69,6 +88,44 @@ export class DetailCardComponent implements OnInit, OnChanges {
         }
       }
     }
+  }
+
+  toggleFavoriteEvent() {
+    const favoriteEventsKey = 'favorite_events';
+    let favoriteEvents: FavoriteEvent[] = JSON.parse(localStorage.getItem(favoriteEventsKey) || '[]');
+
+    this.checkIfEventIsFavorite();
+
+    const event: FavoriteEvent = {
+      date: this.eventDetailData.dates.start.localDate, 
+      event: this.eventDetailData.name, 
+      category: this.getGenres(this.eventDetailData.classifications[0]), 
+      venue: this.eventDetailData._embedded.venues[0].name, 
+    };
+
+
+    if (!this.isFavorite) {
+      favoriteEvents.push(event);
+      localStorage.setItem(favoriteEventsKey, JSON.stringify(favoriteEvents));
+      this.isFavorite = true;
+    } else {
+      favoriteEvents = favoriteEvents.filter((e) => e.event !== event.event);
+      localStorage.setItem(favoriteEventsKey, JSON.stringify(favoriteEvents));
+      this.isFavorite = false;
+    }
+    
+  }
+
+  checkIfEventIsFavorite() {
+    const favoriteEventsKey = 'favorite_events';
+    const favoriteEvents: FavoriteEvent[] = JSON.parse(localStorage.getItem(favoriteEventsKey) || '[]');
+    this.isFavorite = favoriteEvents.some((e) => e.event === this.eventDetailData.name);
+  }
+
+  getGenres(classification: any): string {
+    const names = [classification.subGenre?.name, classification.genre?.name, classification.segment?.name, classification.subType?.name, classification.type?.name];
+    const filteredNames = names.filter(name => (name && name !== "Undefined"));
+    return filteredNames.join(' | ');
   }
 
   backClicked(): void {
