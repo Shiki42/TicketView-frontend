@@ -1,20 +1,24 @@
 <div *ngIf="!isHidden" class="frosted-glass">
     
-<div class="back-btn" (click)="backClicked()">Back</div>
-<div *ngIf="eventDetailData && eventDetailData.name" id="cardEventName">{{eventDetailData.name}}
-    <span class="material-icons" *ngIf="isFavorite" (click)="toggleFavoriteEvent()">favorite</span>
-    <span class="material-icons" *ngIf="!isFavorite" (click)="toggleFavoriteEvent()">favorite_border</span>
-<mat-tab-group mat-align-tabs="center" >
-    <mat-tab label="Events">
-        <app-event-detail [eventDetailData]="eventDetailData"></app-event-detail>
-    </mat-tab>
-    <mat-tab label="Artist/Teams">
-        <app-artist-detail [artistDataList]="artistDataList"></app-artist-detail>
-    </mat-tab>
-    <mat-tab label="Venue">
-        <app-venue-detail [venueData]="venueData"></app-venue-detail>
-    </mat-tab>
-  </mat-tab-group>
-  <br>
+<div class="back-btn" (click)="backClicked()"><div class="material-icons">
+    arrow_back_ios_new</div>Back</div>
+<div *ngIf="eventDetailData && eventDetailData.name" id="cardEventName" >
+    <div class="header-container">
+        <i class="header">{{eventDetailData.name}}</i>
+        <i class="material-icons fav red" *ngIf="isFavorite" (click)="toggleFavoriteEvent()">favorite</i>
+        <i class="material-icons fav" *ngIf="!isFavorite" (click)="toggleFavoriteEvent()">favorite_border</i>
+      </div>
+    <mat-tab-group mat-align-tabs="center" >
+        <mat-tab label="Events">
+            <app-event-detail [eventDetailData]="eventDetailData"></app-event-detail>
+        </mat-tab>
+        <mat-tab label="Artist/Teams">
+            <app-artist-detail [artistDataList]="artistDataList"></app-artist-detail>
+        </mat-tab>
+        <mat-tab label="Venue">
+            <app-venue-detail [venueData]="venueData"></app-venue-detail>
+        </mat-tab>
+    </mat-tab-group>
+    <br>
 
 </div>

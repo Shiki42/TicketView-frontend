@@ -4,15 +4,32 @@
     border-radius: 10px;
     max-width: 1200px;
     margin: 0 auto;
+    color: #fff;
     }
 
+.header {
+    font:300 30px/1.5 'Open Sans', sans-serif;
+    font-size: 30px;
+    color: #fff;
+    margin-right: 10px;
+    }
 
 .back-btn {
     color: white;
     text-decoration: underline;
     }
 
-.material-icons {
+.red{
+    color: red;
+    }
+
+.header-container {
+    display: flex;
+    align-items: center; /* Aligns items vertically */
+    justify-content: center;
+    }
+
+.fav {
     background-color: white;
     border-radius: 50%; /* Creates a rounded shape */
     width: 40px; /* Adjust the size as needed */
