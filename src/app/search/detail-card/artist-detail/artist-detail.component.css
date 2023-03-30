@@ -3,6 +3,7 @@
     background-color: white;
     color: red;
     text-align: center;
+    margin: auto;
   }
 
 .lime-text-size-14 {
@@ -66,3 +67,11 @@
     align-items: center;
     justify-content: center;
   }
+
+.follow{
+    font-size: 30px;
+}
+.spotify-icon {
+font-size: 30px; /* Adjust the size as needed */
+color: #1DB954; /* Spotify green color, change the value to the desired color */
+}

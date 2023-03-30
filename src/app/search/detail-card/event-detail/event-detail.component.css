@@ -58,6 +58,7 @@ color: white;
 }
 
 .img-fluid {
+  margin: 10px;
   width: 100%;
   height: auto;
 }

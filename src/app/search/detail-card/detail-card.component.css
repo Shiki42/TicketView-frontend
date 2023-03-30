@@ -5,6 +5,7 @@
     max-width: 1200px;
     margin: 0 auto;
     color: #fff;
+    justify-content: center;
     }
 
 .header {
@@ -23,6 +24,10 @@
     color: red;
     }
 
+.grey{
+    color: grey;
+    }
+    
 .header-container {
     display: flex;
     align-items: center; /* Aligns items vertically */
