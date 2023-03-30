@@ -36,8 +36,10 @@ export class SearchFormComponent implements OnInit {
       distance: '',
       category: 'default',
       autoDetect: false,
-      location: '',
+      location: '',      
     });
+    this.searchForm.get('location')!.setValidators(Validators.required);
+    this.searchForm.get('location')!.updateValueAndValidity();
     // Emit the custom event to the parent component
     this.clearResults.emit();
   }

@@ -1,5 +1,5 @@
-import { Component, ViewChild } from '@angular/core';
-import { SearchResultComponent } from './search-result/search-result.component';
+import { Component } from '@angular/core';
+
 
 @Component({
   selector: 'app-search',
@@ -9,27 +9,36 @@ import { SearchResultComponent } from './search-result/search-result.component';
 
 export class SearchComponent {
 
-  cardClosed: boolean = true;
+  resultsDisplayed: boolean = false;
+  cardDisplayed: boolean = false;
+
+  formCleared: boolean = false;
+  formSubmitted: boolean = false;
+  cardClosed: boolean = false;
   eventsData: any;
   selectedEventId: string | null = null;
 
-  @ViewChild('searchResultComponent') searchResultComponent!: SearchResultComponent;
+
   onClearResults() {   
-    this.searchResultComponent.clearResults();
+    this.resultsDisplayed = false;
+    this.cardDisplayed = false;
   }
 
   handleEventDetails(eventId: any) {
     this.selectedEventId = eventId;
-    this.cardClosed = false;
+    this.resultsDisplayed = false;
+    this.cardDisplayed = true;
   }
 
   handleSearchResults(results: any) {
     this.eventsData = results;
+    this.resultsDisplayed = true;
+    this.cardDisplayed = false;
   }
 
   closeEventDetails() {
-    console.log('closeEventDetails');
     this.selectedEventId = null;
-    this.cardClosed = true;
+    this.resultsDisplayed = true;
+    this.cardDisplayed = false;
   }
 }

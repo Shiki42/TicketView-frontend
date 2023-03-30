@@ -12,6 +12,7 @@ import { ArtistAlbumService } from 'src/app/services/artist-album.service';
 export class DetailCardComponent implements OnInit, OnChanges {
   @Input() eventId: string | null = null;
   @Output() cardClosed  = new EventEmitter<void>();
+
   isHidden: boolean = false;
 
   eventDetailData: any | null = null;
@@ -26,7 +27,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventId'] && this.eventId) {
-      this.isHidden = false;
+      //this.isHidden = false;
       this.fetchData(this.eventId);
     }
   }
@@ -72,7 +73,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
 
   backClicked(): void {
     this.cardClosed.emit();
-    this.isHidden = true;
+    //this.isHidden = true;
   }
 
 }
