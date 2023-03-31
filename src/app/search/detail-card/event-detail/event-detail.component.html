@@ -11,7 +11,7 @@
       <div *ngIf="eventDetailData._embedded?.attractions?.length > 0" id="cardArtist">
         <strong class="lime-text-size-14">Artist/Team</strong><br>
         <ng-container *ngFor="let attraction of eventDetailData._embedded.attractions; let isLast = last">
-          <a [href]="attraction.url" style="text-decoration:none">{{attraction.name}}</a><ng-container *ngIf="!isLast"> | </ng-container>
+          {{attraction.name}}<ng-container *ngIf="!isLast"> | </ng-container>
         </ng-container><br>
       </div>
     
@@ -36,7 +36,7 @@
     
       <div *ngIf="eventDetailData.url" id="cardBuyTickets">
         <strong class="lime-text-size-14">Buy Tickets At: </strong><br>
-        <a [href]="eventDetailData.url" style="text-decoration:none">Ticketmaster</a>
+        <a [href]="eventDetailData.url" target="_blank" style="text-decoration:none">Ticketmaster</a>
       </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 nav {
     background-color: transparent;
+    margin:10px;
   }
   
   nav ul {
@@ -24,5 +25,6 @@ nav {
   
   nav ul li a:hover,
   nav ul li a.active {
-    border: 1px solid #ffffff;
+    border: 2px solid #ffffff;
+    border-radius: 10px;
   }

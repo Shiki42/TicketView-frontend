@@ -1,11 +1,38 @@
+.custom-alert {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 9999;
+    background-color: rgb(17, 4, 4);
+    color: #fff;
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 400px;
+    margin: auto;
+  }
+  
+  .close-button {
+    background-color: rgb(39, 64, 255);
+    font-size: 1.5rem;
+    color: #fff;
+    cursor: pointer;
+    border: 2px solid #000000;
+    border-radius: 10px;
+  }
+
+
 .frosted-glass {
     background: rgba(255, 255, 255, 0.2);
     backdrop-filter: blur(10px);
     border-radius: 10px;
-    max-width: 1200px;
+    max-width: 950px;
     margin: 0 auto;
     color: #fff;
     justify-content: center;
+    padding:10px;
     }
 
 .header {
@@ -15,9 +42,13 @@
     margin-right: 10px;
     }
 
+.back-icon {
+    font-size: 18px;
+    }
 .back-btn {
     color: white;
     text-decoration: underline;
+    font-size: 18px;
     }
 
 .red{
@@ -49,3 +80,8 @@
     font-size: 24px; /* Adjust the font size as needed */
     font-weight: bold;
     }
+
+.test{
+    background-color: aquamarine !important;
+    color:white;
+}

@@ -1,6 +1,11 @@
+<div *ngIf="showAlert" class="custom-alert" role="alert">
+    {{ alertMessage }}
+    <button class="close-button" (click)="closeAlert()">OK</button>
+  </div>
+
 <div *ngIf="!isHidden" class="frosted-glass">
     
-<div class="back-btn" (click)="backClicked()"><div class="material-icons">
+<div class="back-btn" (click)="backClicked()"><div class="material-icons back-icon">
     arrow_back_ios_new</div>Back</div>
 <div *ngIf="eventDetailData && eventDetailData.name" id="cardEventName" >
     <div class="header-container">
@@ -9,7 +14,7 @@
         <i class="material-icons fav grey" *ngIf="!isFavorite" (click)="toggleFavoriteEvent()">favorite_border</i>
       </div>
     <mat-tab-group mat-align-tabs="center" >
-        <mat-tab label="Events">
+        <mat-tab label="Events" class="test">
             <app-event-detail [eventDetailData]="eventDetailData"></app-event-detail>
         </mat-tab>
         <mat-tab label="Artist/Teams">

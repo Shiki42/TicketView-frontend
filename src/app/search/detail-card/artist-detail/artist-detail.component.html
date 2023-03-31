@@ -1,4 +1,4 @@
-<div *ngIf="artistDataList && artistDataList.length == 0" class="no-results">No records found.</div>
+<div *ngIf="artistDataList && artistDataList.length == 0" class="no-results">No music related artist details to show.</div>
 <ng-container *ngIf="artistDataList && artistDataList.length > 0">
   <div class="carousel-container">
     <carousel [noWrap]="artistDataList.length === 1" [noPause]="true" [interval]="0">

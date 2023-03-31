@@ -2,9 +2,12 @@
   margin-bottom: 16px;
 }
 
+.row {
+  color:aliceblue
+}
+
 .detail-text {
   overflow: hidden;
-  text-overflow: ellipsis;
   display: -webkit-box;
   -webkit-box-orient: vertical;
 }
@@ -33,4 +36,30 @@
 
 .map {
   width: 100%;
+}
+
+.modal-title{
+  color:black;
+}
+
+.lime-text-size-14 {
+  color: 	rgb(127, 255, 212);
+  font-size: 18px;
+  }
+
+.col-md-6 {
+  margin-top: 10px;
+}
+
+.button-container{
+  display: flex;
+  justify-content: center;
+}
+
+
+.open-map-button{
+  border-radius: 10px;
+  margin:auto;
+  background-color: rgb(237, 54, 54);
+  color: white;
 }

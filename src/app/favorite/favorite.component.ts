@@ -14,6 +14,8 @@ interface FavoriteEvent {
 })
 export class FavoriteComponent {
   favoriteEvents: FavoriteEvent[] = [];
+  showAlert = false;
+  alertMessage = 'Removed from Favorites!';
 
   ngOnInit() {
     this.loadFavoriteEvents();
@@ -28,5 +30,9 @@ export class FavoriteComponent {
     const favoriteEventsKey = 'favorite_events';
     this.favoriteEvents = this.favoriteEvents.filter((e) => e.event !== eventToRemove);
     localStorage.setItem(favoriteEventsKey, JSON.stringify(this.favoriteEvents));
+    this.showAlert = true;
+  }
+  closeAlert() {
+    this.showAlert = false;
   }
 }

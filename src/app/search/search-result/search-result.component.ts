@@ -24,7 +24,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventsData']) {
-      //console.log('eventsData:', this.eventsData);
+      this.sortTable(0)
     }
   }
 

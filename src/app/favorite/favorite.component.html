@@ -1,12 +1,20 @@
+<div *ngIf="showAlert" class="custom-alert" role="alert">
+    {{ alertMessage }}
+    <button class="close-button" (click)="closeAlert()">OK</button>
+  </div>
+
+<div *ngIf="favoriteEvents && favoriteEvents.length == 0" class="no-results">No favorite events to show.</div>
+<ng-container *ngIf="favoriteEvents && favoriteEvents.length > 0">
+
 <table>
     <thead>
       <tr>
-        <th>Index</th>
+        <th>#</th>
         <th>Date</th>
         <th>Event</th>
         <th>Category</th>
         <th>Venue</th>
-        <th>Action</th>
+        <th>Favorite</th>
       </tr>
     </thead>
     <tbody>
@@ -17,8 +25,10 @@
         <td>{{ event.category }}</td>
         <td>{{ event.venue }}</td>
         <td>
-          <button (click)="removeFavoriteEvent(event.event)">Remove</button>
+          <div class="material-icons back-icon" (click)="removeFavoriteEvent(event.event)">delete_outline</div>
         </td>
       </tr>
     </tbody>
   </table>
+
+</ng-container>

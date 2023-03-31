@@ -12,14 +12,15 @@
     </tr>
   </thead>
   <tbody>
-    <tr *ngFor="let event of eventsData">
+    <tr *ngFor="let event of eventsData" (click)="displayEventCard(event.id, $event)">
       <td>{{event.dates.start.localDate}}<br>{{event.dates.start.localTime}}</td>
       <td><img *ngIf="event.images" [src]="getImageUrl(event)" width="90" height="90" alt="No Event Image Available"></td>
-      <td><a href="#" class="nameLink" (click)="displayEventCard(event.id, $event)">{{event.name}}</a></td>
+      <td>{{event.name}}</td>
       <td>{{event.classifications[0].segment.name}}</td>
       <td>{{event._embedded.venues[0].name}}</td>
     </tr>
-</tbody>
+  </tbody>
 </table>
+
 </div>
 </div>

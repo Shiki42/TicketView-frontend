@@ -21,8 +21,10 @@ export class DetailCardComponent implements OnInit, OnChanges {
   @Input() eventId: string | null = null;
   @Output() cardClosed  = new EventEmitter<void>();
 
+  alertMessage = '';
   isFavorite: boolean = false;
   isHidden: boolean = false;
+  showAlert = false;
 
   eventDetailData: any | null = null;
   artistDataList: any | null = null;
@@ -91,6 +93,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
   }
 
   toggleFavoriteEvent() {
+    this.showAlert = true;
     const favoriteEventsKey = 'favorite_events';
     let favoriteEvents: FavoriteEvent[] = JSON.parse(localStorage.getItem(favoriteEventsKey) || '[]');
 
@@ -108,10 +111,12 @@ export class DetailCardComponent implements OnInit, OnChanges {
       favoriteEvents.push(event);
       localStorage.setItem(favoriteEventsKey, JSON.stringify(favoriteEvents));
       this.isFavorite = true;
+      this.alertMessage = 'Event Added to Favorites!';
     } else {
       favoriteEvents = favoriteEvents.filter((e) => e.event !== event.event);
       localStorage.setItem(favoriteEventsKey, JSON.stringify(favoriteEvents));
       this.isFavorite = false;
+      this.alertMessage = 'Removed from Favorites!';
     }
     
   }
@@ -128,6 +133,10 @@ export class DetailCardComponent implements OnInit, OnChanges {
     return filteredNames.join(' | ');
   }
 
+  closeAlert() {
+    this.showAlert = false;
+  }
+  
   backClicked(): void {
     this.cardClosed.emit();
     //this.isHidden = true;
