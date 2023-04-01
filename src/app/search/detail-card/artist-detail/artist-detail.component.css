@@ -4,7 +4,8 @@
     color: red;
     text-align: center;
     margin: auto;
-    margin-top: 100px;;
+    margin-top: 100px;
+    border-radius: 10px;
   }
 
 .lime-text-size-14 {
@@ -54,12 +55,14 @@
   width: 100%;
 }
 
-.row {
+.row-cus {
   padding: 20px;
-  width: 100%;
-  justify-content: center;
 }
 
+.row {
+    width: 100%;
+    justify-content: center;
+  }
 .custom-row-width {
     width: 800px;
     max-width: 100%;
@@ -75,4 +78,14 @@
 .spotify-icon {
 font-size: 30px; /* Adjust the size as needed */
 color: #1DB954; /* Spotify green color, change the value to the desired color */
+}
+
+.test-margin{
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.picture-fit{
+    margin-left: 30px;
+    margin-right: 30px;
 }

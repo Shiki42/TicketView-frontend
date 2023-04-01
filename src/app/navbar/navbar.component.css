@@ -21,6 +21,7 @@ nav {
     color: #ffffff;
     text-decoration: none;
     border: 1px solid transparent;
+    margin-right:5px;
   }
   
   nav ul li a:hover,
@@ -28,3 +29,4 @@ nav {
     border: 2px solid #ffffff;
     border-radius: 10px;
   }
+

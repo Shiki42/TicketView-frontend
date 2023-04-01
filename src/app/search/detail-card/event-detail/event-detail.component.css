@@ -44,6 +44,10 @@ color: white;
   gap: 1rem;
 }
 
+.content-container > * {
+  margin-top: 15px;
+}
+
 .share-icon {
   font-size: 1.5rem;
   cursor: pointer;

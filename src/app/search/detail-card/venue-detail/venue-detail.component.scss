@@ -58,8 +58,27 @@
 
 
 .open-map-button{
+  border:rgb(197, 58, 58);
   border-radius: 10px;
   margin:auto;
-  background-color: rgb(237, 54, 54);
+  background-color: rgb(197, 58, 58);
   color: white;
+  padding: 5px;
+  margin-top: 20px;
+}
+
+.margin-top{
+  margin-top: 15px;
+}
+
+.modal-test{
+  z-index: 1050;
+}
+
+.modal-footer {
+  justify-content: flex-start; /* Aligns the button to the left corner */
+}
+
+.back-icon{
+  color: rgb(224, 223, 223);
 }

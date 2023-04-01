@@ -1,11 +1,11 @@
 <div *ngIf="artistDataList && artistDataList.length == 0" class="no-results">No music related artist details to show.</div>
 <ng-container *ngIf="artistDataList && artistDataList.length > 0">
   <div class="carousel-container">
-    <carousel [noWrap]="artistDataList.length === 1" [noPause]="true" [interval]="0">
+    <carousel [noWrap]="artistDataList.length === 1" [noPause]="true" [interval]="0" [isAnimated]="true">
       <slide *ngFor="let artistData of artistDataList">
-        <div class="artist-data artist-data-container">
+        <div class="artist-data artist-data-container test-margin">
 
-          <div class="row custom-row-width">
+          <div class="row custom-row-width row-cus">
             <div class="col-lg-3 col-md-6 col-sm-12 centered-content">
               <img *ngIf="artistData.image" [src]="artistData.image.url" [alt]="artistData.name" class="artist-image">
               <h4 class="lime-text-size-14">{{artistData.name}}</h4>
@@ -35,11 +35,11 @@
             </div>
           </div>
           <div class="album-covers">
-            <h5 class="lime-text-size-14">Album featuring {{artistData.name}}</h5>
+            <h5 class="lime-text-size-14 picture-fit">Album featuring {{artistData.name}}</h5>
             <div class="container">
               <div class="row">
                 <ng-container *ngFor="let albumCoverImage of artistData.albumCoverImages">
-                  <div class="col-lg-3 col-md-6 col-sm-12 centered-content">
+                  <div class="col-lg-3 col-md-6 col-sm-12 centered-content picture-fit">
                     <img *ngIf="albumCoverImage" [src]="albumCoverImage.url" [alt]="'Album Cover'" class="album-cover-image">
                   </div>
                 </ng-container>

@@ -1,14 +1,14 @@
 <div *ngIf="!isHidden">
   <div class="table-responsive">
-<div *ngIf="eventsData === 'no results' || (eventsData && eventsData.length === 0)" class="no-results">No records found.</div>
+<div *ngIf="eventsData === 'no results' || (eventsData && eventsData.length === 0)" class="no-results">No results available.</div>
 <table *ngIf="eventsData && eventsData !== 'no results' && eventsData.length > 0" class="table custom-table" id="eventTable">
   <thead id="tableHead">
     <tr>
-      <th id="s0" (click)="sortTable(0)">Date</th>
+      <th id="s0" (click)="sortTable(0)">Date/Time</th>
       <th>Icon</th>
-      <th id="s2" (click)="sortTable(2)">Event Name</th>
+      <th id="s2" (click)="sortTable(2)">Event</th>
       <th id="s3" (click)="sortTable(3)">Genre</th>
-      <th id="s4" (click)="sortTable(4)">Venue Name</th>
+      <th id="s4" (click)="sortTable(4)">Venue</th>
     </tr>
   </thead>
   <tbody>

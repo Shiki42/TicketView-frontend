@@ -1,6 +1,6 @@
 <div *ngIf="showAlert" class="custom-alert" role="alert">
-    {{ alertMessage }}
-    <button class="close-button" (click)="closeAlert()">OK</button>
+    <div>{{ alertMessage }}<br></div>
+    <div><button class="close-button" (click)="closeAlert()">OK</button></div>
   </div>
 
 <div *ngIf="!isHidden" class="frosted-glass">

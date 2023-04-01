@@ -7,15 +7,15 @@
     <div class="container text-center">
       <div class="row">
         <div class="col-md-6 centered">
-          <div *ngIf="venueData.name">
+          <div *ngIf="venueData.name" class="margin-top">
             <strong class="lime-text-size-14">Name</strong><br>
             {{ venueData.name }}            
           </div>
-          <div *ngIf="venueData.address && venueData.address.line1 && venueData.city && venueData.city.name && venueData.state && venueData.state.name">
+          <div *ngIf="venueData.address && venueData.address.line1 && venueData.city && venueData.city.name && venueData.state && venueData.state.name" class="margin-top">
             <strong class="lime-text-size-14">Address</strong><br>
             {{ venueData.address.line1 }},{{ venueData.city.name }}, {{ venueData.state.name }}
           </div>
-          <div *ngIf="venueData.boxOfficeInfo && venueData.boxOfficeInfo.phoneNumberDetail">
+          <div *ngIf="venueData.boxOfficeInfo && venueData.boxOfficeInfo.phoneNumberDetail" class="margin-top">
             <strong class="lime-text-size-14">Phone Number</strong><br>
             {{ venueData.boxOfficeInfo.phoneNumberDetail}}            
           </div>
@@ -25,21 +25,30 @@
             <strong class="lime-text-size-14">Open Hours</strong>
             <span #openHoursContent class="detail-text detail-text-openHours" [style.max-height]="showMoreButton.openHours ? 'none' : '3em'" >{{ venueData.boxOfficeInfo.openHoursDetail }}</span>
             <button  *ngIf="isContentLong(venueData.boxOfficeInfo.openHoursDetail)"  (click)="toggleShowMore('openHours')"  class="show-more-button">
-              {{ showMoreButton.openHours ? 'Show Less &#8963;' : 'Show More &#8964;' }}
+              {{ showMoreButton.openHours ? 'Show Less ' : 'Show More ' }}
+              <span class="material-icons back-icon">
+                {{ showMoreButton.openHours ? 'expand_less' : 'expand_more' }}
+              </span>
             </button>           
           </div>
           <div class="detail-box" *ngIf="venueData.generalInfo && venueData.generalInfo.generalRule">
             <strong class="lime-text-size-14">General Rule</strong>
             <span #generalRuleContent class="detail-text detail-text-generalRule" [style.max-height]="showMoreButton.generalRule ? 'none' : '3em'" >{{ venueData.generalInfo.generalRule }}</span>
             <button *ngIf="isContentLong(venueData.generalInfo.generalRule)" (click)="toggleShowMore('generalRule')" class="show-more-button">
-              {{ showMoreButton.generalRule ? 'Show Less &#8963;' : 'Show More &#8964;' }}
+              {{ showMoreButton.generalRule ? 'Show Less ' : 'Show More ' }}
+              <span class="material-icons back-icon">
+                {{ showMoreButton.generalRule ? 'expand_less' : 'expand_more' }}
+              </span>
             </button>
           </div>
           <div class="detail-box" *ngIf="venueData.generalInfo && venueData.generalInfo.childRule">
             <strong class="lime-text-size-14">Child Rule</strong>
             <span #childRuleContent class="detail-text detail-text-childRule" [style.max-height]="showMoreButton.childRule ? 'none' : '3em'" >{{ venueData.generalInfo.childRule }}</span>
             <button *ngIf="isContentLong(venueData.generalInfo.childRule)" (click)="toggleShowMore('childRule')" class="show-more-button">
-              {{ showMoreButton.childRule ? 'Show Less &#8963;' : 'Show More &#8964;' }}
+              {{ showMoreButton.childRule ? 'Show Less ' : 'Show More ' }}
+              <span class="material-icons back-icon">
+                {{ showMoreButton.childRule ? 'expand_less' : 'expand_more' }}
+              </span>
             </button>
           </div>
         </div>
@@ -51,26 +60,28 @@
     <!-- Bootstrap modal -->
     
 
-    <div bsModal #mapModal="bs-modal" class="modal" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" [config]="{backdrop: false, keyboard: false}">
-      <div class="modal-dialog">
-        <div class="modal-content">
-          <!-- Modal content -->
-          <div class="modal-header">
-            <h5 class="modal-title" id="mapModalLabel">Event Venue</h5>
-          </div>
-          <div class="modal-body">
-            <div class="my-google-map">
-              <div class="my-google-container">
-              <google-map *ngIf="venueData.location" class="map" [options]="{ center: {lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}, zoom: 14 }">
-                <map-marker [position]="{lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}"></map-marker>              
-              </google-map>
-              </div>
-            </div>
-          </div>
-          <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+</div>
+
+
+<div bsModal #mapModal="bs-modal" class="modal modal-test" tabindex="-1" role="dialog" aria-labelledby="mapModalLabel" [config]="{backdrop: false, keyboard: false}">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <!-- Modal content -->
+      <div class="modal-header">
+        <h5 class="modal-title" id="mapModalLabel">Event Venue</h5>
+      </div>
+      <div class="modal-body">
+        <div class="my-google-map">
+          <div class="my-google-container">
+          <google-map *ngIf="venueData && venueData.location" class="map" [options]="{ center: {lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}, zoom: 14 }">
+            <map-marker [position]="{lat: toNumber(venueData.location.latitude), lng: toNumber(venueData.location.longitude)}"></map-marker>              
+          </google-map>
           </div>
         </div>
       </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="hideModal()">Close</button>
+      </div>
     </div>
+  </div>
 </div>
