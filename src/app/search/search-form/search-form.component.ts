@@ -38,8 +38,10 @@ export class SearchFormComponent implements OnInit {
       autoDetect: false,
       location: '',      
     });
-    this.searchForm.get('location')!.setValidators(Validators.required);
-    this.searchForm.get('location')!.updateValueAndValidity();
+    let locationControl = this.searchForm.get('location')!;
+    locationControl.setValidators(Validators.required);
+    locationControl.enable();
+    locationControl!.updateValueAndValidity();
     // Emit the custom event to the parent component
     this.clearResults.emit();
   }
@@ -91,6 +93,8 @@ export class SearchFormComponent implements OnInit {
         } else {
           this.searchResults.emit('no results');
         }
+      } else {
+        this.searchResults.emit('no results');
       }
     } else {
       //this.searchForm.markAllAsTouched();
@@ -99,10 +103,10 @@ export class SearchFormComponent implements OnInit {
   }
 
   toggleLocation() {
-    this.isLocationHidden = !this.isLocationHidden;
+    const autoDetectControl = this.searchForm.get('autoDetect');
     const locationControl = this.searchForm.get('location');
-    if (locationControl) {
-      if (this.isLocationHidden) {
+    if (locationControl && autoDetectControl) {
+      if (autoDetectControl.value) {
         locationControl.clearValidators();
         locationControl.setValue('');
         locationControl.disable();

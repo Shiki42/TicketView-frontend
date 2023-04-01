@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 
 interface FavoriteEvent {
+  id : string;
   date: Date;
   event: string;
   category: string;
@@ -28,7 +29,7 @@ export class FavoriteComponent {
 
   removeFavoriteEvent(eventToRemove: string) {
     const favoriteEventsKey = 'favorite_events';
-    this.favoriteEvents = this.favoriteEvents.filter((e) => e.event !== eventToRemove);
+    this.favoriteEvents = this.favoriteEvents.filter((e) => e.id !== eventToRemove);
     localStorage.setItem(favoriteEventsKey, JSON.stringify(this.favoriteEvents));
     this.showAlert = true;
   }

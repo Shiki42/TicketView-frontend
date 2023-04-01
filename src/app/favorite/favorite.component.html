@@ -5,6 +5,7 @@
 
 <div *ngIf="favoriteEvents && favoriteEvents.length == 0" class="no-results">No favorite events to show.</div>
 <ng-container *ngIf="favoriteEvents && favoriteEvents.length > 0">
+<h2 class="lime-text-size-14 text-center">List of your favorite events</h2>
 
 <table>
     <thead>
@@ -25,7 +26,7 @@
         <td>{{ event.category }}</td>
         <td>{{ event.venue }}</td>
         <td>
-          <div class="material-icons back-icon" (click)="removeFavoriteEvent(event.event)">delete_outline</div>
+          <div class="material-icons back-icon" (click)="removeFavoriteEvent(event.id)">delete_outline</div>
         </td>
       </tr>
     </tbody>

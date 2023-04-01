@@ -40,6 +40,7 @@ export class LocationService {
       .catch((error) => {
         console.error('Failed to retrieve location from address:', error);
         throw new Error('Failed to retrieve location from address');
+        return null;
       });
   }
 }

@@ -12,7 +12,7 @@ export class EventDetailComponent  {
   constructor() {}
 
   getGenres(classification: any): string {
-    const names = [classification.subGenre?.name, classification.genre?.name, classification.segment?.name, classification.subType?.name, classification.type?.name];
+    const names = [classification.segment?.name, classification.genre?.name, classification.subGenre?.name, classification.type?.name,  classification.subType?.name ];
     const filteredNames = names.filter(name => (name && name !== "Undefined"));
     return filteredNames.join(' | ');
   }
@@ -72,5 +72,5 @@ export class EventDetailComponent  {
     const facebookUrl = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(eventUrl)}`;
     window.open(facebookUrl, '_blank');
   }
-  
+
 }

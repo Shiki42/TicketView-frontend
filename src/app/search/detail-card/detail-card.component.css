@@ -36,10 +36,11 @@
     }
 
 .header {
-    font:300 30px/1.5 'Open Sans', sans-serif;
+    font:300 22px/1.5 'Open Sans', sans-serif;
     font-size: 30px;
     color: #fff;
     margin-right: 10px;
+    text-align: center;
     }
 
 .back-icon {

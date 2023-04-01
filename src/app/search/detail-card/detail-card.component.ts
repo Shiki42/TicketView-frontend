@@ -5,6 +5,7 @@ import { VenueService } from 'src/app/services/venue.service';
 import { ArtistAlbumService } from 'src/app/services/artist-album.service';
 
 interface FavoriteEvent {
+  id : string;
   date: Date;
   event: string;
   category: string;
@@ -100,6 +101,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
     this.checkIfEventIsFavorite();
 
     const event: FavoriteEvent = {
+      id: this.eventDetailData.id,
       date: this.eventDetailData.dates.start.localDate, 
       event: this.eventDetailData.name, 
       category: this.getGenres(this.eventDetailData.classifications[0]), 
@@ -113,7 +115,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
       this.isFavorite = true;
       this.alertMessage = 'Event Added to Favorites!';
     } else {
-      favoriteEvents = favoriteEvents.filter((e) => e.event !== event.event);
+      favoriteEvents = favoriteEvents.filter((e) => e.id !== event.id);
       localStorage.setItem(favoriteEventsKey, JSON.stringify(favoriteEvents));
       this.isFavorite = false;
       this.alertMessage = 'Removed from Favorites!';
@@ -124,7 +126,10 @@ export class DetailCardComponent implements OnInit, OnChanges {
   checkIfEventIsFavorite() {
     const favoriteEventsKey = 'favorite_events';
     const favoriteEvents: FavoriteEvent[] = JSON.parse(localStorage.getItem(favoriteEventsKey) || '[]');
-    this.isFavorite = favoriteEvents.some((e) => e.event === this.eventDetailData.name);
+    // if (!this.eventId) {
+    //   return;
+    // }
+    this.isFavorite = favoriteEvents.some((e) => e.id === this.eventId);
   }
 
   getGenres(classification: any): string {
@@ -136,7 +141,7 @@ export class DetailCardComponent implements OnInit, OnChanges {
   closeAlert() {
     this.showAlert = false;
   }
-  
+
   backClicked(): void {
     this.cardClosed.emit();
     //this.isHidden = true;

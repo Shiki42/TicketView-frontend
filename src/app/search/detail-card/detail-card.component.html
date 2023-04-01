@@ -8,10 +8,21 @@
 <div class="back-btn" (click)="backClicked()"><div class="material-icons back-icon">
     arrow_back_ios_new</div>Back</div>
 <div *ngIf="eventDetailData && eventDetailData.name" id="cardEventName" >
-    <div class="header-container">
-        <i class="header">{{eventDetailData.name}}</i>
-        <i class="material-icons fav red" *ngIf="isFavorite" (click)="toggleFavoriteEvent()">favorite</i>
-        <i class="material-icons fav grey" *ngIf="!isFavorite" (click)="toggleFavoriteEvent()">favorite_border</i>
+    <div class="container">
+        <div class="row align-items-center justify-content-md-center">
+          <div class="col-md-auto">
+            <div class="header-container">
+              <i class="header">{{eventDetailData.name}}</i>
+            </div>
+          </div>
+          <div class="col-md-auto">
+            <div class="fav-container d-flex justify-content-center">
+              <i class="material-icons fav red" *ngIf="isFavorite" (click)="toggleFavoriteEvent()">favorite</i>
+              <i class="material-icons fav grey" *ngIf="!isFavorite" (click)="toggleFavoriteEvent()">favorite_border</i>
+            </div>
+          </div>
+          <div class="col-md d-md-none"></div>
+        </div>
       </div>
     <mat-tab-group mat-align-tabs="center" >
         <mat-tab label="Events" class="test">
