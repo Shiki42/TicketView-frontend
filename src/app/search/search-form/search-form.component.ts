@@ -66,9 +66,13 @@ export class SearchFormComponent implements OnInit {
     }
   
     const results = await this.autoCompleteService.fetchAutoCompletes(value);
-    const autoCompleteResultsList = results._embedded.attractions.map((attraction:any) => attraction.name);
-  
-    return autoCompleteResultsList;
+    if (results._embedded && results._embedded.attractions){
+      const autoCompleteResultsList = results._embedded.attractions.map((attraction:any) => attraction.name);
+      return autoCompleteResultsList;
+    }
+    
+    return [];
+      
   }
   
   async onSubmit() {
@@ -80,6 +84,8 @@ export class SearchFormComponent implements OnInit {
         loc = await this.locationService.fetchLocation();
       } else {
         loc = await this.locationService.getLatLngFromAddress(location!);
+        //console.log('location',location);
+        //console.log('loc',loc);
       }
 
       if (loc) {

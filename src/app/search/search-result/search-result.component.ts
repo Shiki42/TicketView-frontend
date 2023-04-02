@@ -24,7 +24,10 @@ export class SearchResultComponent implements OnInit, OnChanges {
 
   ngOnChanges(changes: SimpleChanges): void {
     if (changes['eventsData']) {
-      this.sortTable(0)
+      //console.log('search-result eventsData', this.eventsData);
+      if (Array.isArray(this.eventsData)) {
+        this.sortTable(0)
+      }
     }
   }
 
@@ -40,7 +43,7 @@ export class SearchResultComponent implements OnInit, OnChanges {
       this.sortedColumn = columnIndex;
       this.sortOrder = 1;
     } else {
-      this.sortOrder = -this.sortOrder;
+      //this.sortOrder = -this.sortOrder;
     }
 
     this.eventsData.sort((a: any, b: any) => {

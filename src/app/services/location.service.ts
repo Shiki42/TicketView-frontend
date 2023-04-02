@@ -34,6 +34,7 @@ export class LocationService {
             longitude: location.lng
           };
         } else {
+          console.error('Geocoding error:', data.status, data.error_message || '');
           return null;
         }
       })

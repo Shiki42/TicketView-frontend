@@ -8,8 +8,8 @@ import { serverUrl } from './apikey';
 export class VenueService {
   constructor(private http: HttpClient) {}
 
-  fetchVenueDetails(venueName: string) {
-    const url = `${serverUrl}/venues?keyword=${venueName}`;
+  fetchVenueDetails(venueId: string) {
+    const url = `${serverUrl}/venues?id=${venueId}`;
     return this.http.get<any>(url).toPromise();
   }
 }

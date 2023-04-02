@@ -56,22 +56,20 @@ export class DetailCardComponent implements OnInit, OnChanges {
 
   async fetchData(eventId: string) {
     this.eventDetailData = await this.eventDetailService.fetchEventDetails(eventId);
-    const venueDataRes = await this.venueService.fetchVenueDetails(this.eventDetailData._embedded.venues[0].name);
-    this.venueData = venueDataRes._embedded.venues[0];
-    console.log('detail-card venueData', this.venueData)
+    try {
+      const venueDataRes = await this.venueService.fetchVenueDetails(this.eventDetailData._embedded.venues[0].id);
+      this.venueData = venueDataRes._embedded.venues[0];
+    } catch (error) {
+      console.error('Error fetching venue details:', error);
+      this.venueData = 'no venue data';
+    }
     this.artistDataList = [];
   
     if (this.eventDetailData._embedded && this.eventDetailData._embedded.attractions) {
       for (const artist of this.eventDetailData._embedded.attractions) {
         if (artist.classifications && artist.classifications[0].segment.name === 'Music') {
-          //console.log('classifications', artist.classifications)
           this.artistService.fetchArtistDetails(artist.name).then(async (artistResponse: any) => {
-            //const matchedArtist = artistResponse.body.artists.items.find(
-            //  (item: any) => item.name === artist.name
-            //);
-            //console.log('artistResponse', artistResponse)
             const firstResult = artistResponse.artists.items[0];
-            //console.log('firstResult', firstResult)
             if (firstResult) {
               const artistData = {
                 image: firstResult.images[0],
