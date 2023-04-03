@@ -32,7 +32,7 @@
             <app-artist-detail [artistDataList]="artistDataList"></app-artist-detail>
         </mat-tab>
         <mat-tab label="Venue">
-            <app-venue-detail [venueData]="venueData"></app-venue-detail>
+            <app-venue-detail [venueData]="venueData" (openMapModal)="onOpenMapModal($event)"></app-venue-detail>
         </mat-tab>
     </mat-tab-group>
     <br>

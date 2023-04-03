@@ -3,6 +3,8 @@
     
 </app-search-form>
 <app-search-result *ngIf="resultsDisplayed" #searchResultComponent [eventsData]="eventsData" (selectedEventId)="handleEventDetails($event)"></app-search-result>
-<app-detail-card *ngIf="cardDisplayed" [eventId]="selectedEventId" (cardClosed)="closeEventDetails()"></app-detail-card>
-
+<app-detail-card *ngIf="cardDisplayed" [eventId]="selectedEventId" (cardClosed)="closeEventDetails()" (openMapModal)="mapModal.showModal($event)"></app-detail-card>
+<div class="modal-container">
+    <app-map-modal #mapModal></app-map-modal>
+  </div>
 </div>

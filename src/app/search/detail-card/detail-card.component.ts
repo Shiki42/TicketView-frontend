@@ -21,7 +21,12 @@ export class DetailCardComponent implements OnInit, OnChanges {
   
   @Input() eventId: string | null = null;
   @Output() cardClosed  = new EventEmitter<void>();
+  @Output() openMapModal = new EventEmitter<any>();
 
+  onOpenMapModal(venueData: any) {
+    this.openMapModal.emit(venueData);
+  }
+  
   alertMessage = '';
   isFavorite: boolean = false;
   isHidden: boolean = false;

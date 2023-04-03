@@ -1,5 +1,5 @@
-import { Component } from '@angular/core';
-
+import { Component, ViewChild } from '@angular/core';
+import { MapModalComponent } from './map-modal/map-modal.component';
 
 @Component({
   selector: 'app-search',
@@ -8,6 +8,8 @@ import { Component } from '@angular/core';
 })
 
 export class SearchComponent {
+
+  @ViewChild(MapModalComponent) mapModal!: MapModalComponent;
 
   resultsDisplayed: boolean = false;
   cardDisplayed: boolean = false;

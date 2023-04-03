@@ -82,12 +82,10 @@
 }
 
 .modal-test{
-  z-index: 1050;
+  z-index: 9999;
 }
 
-.modal-footer {
-  justify-content: flex-start; /* Aligns the button to the left corner */
-}
+
 
 .back-icon{
   color: rgb(224, 223, 223);

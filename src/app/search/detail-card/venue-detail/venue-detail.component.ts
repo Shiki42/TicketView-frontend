@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, ElementRef, Renderer2, ViewChild, AfterViewChecked, AfterViewInit,OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, OnInit, ElementRef, Renderer2, ViewChild, Output, EventEmitter, OnChanges, SimpleChanges } from '@angular/core';
 import { GapiKey} from '../../../services/apikey';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { MapService } from './mapService';
@@ -12,7 +12,7 @@ declare var google: any;
 export class VenueDetailComponent implements OnInit, OnChanges  {
   @Input() venueData: any | null = null;
   @ViewChild('mapModal', { static: false }) mapModal!: ModalDirective;
-
+  @Output() openMapModal = new EventEmitter<any>();
 
   mapOptions!: google.maps.MapOptions;
 
@@ -90,12 +90,9 @@ export class VenueDetailComponent implements OnInit, OnChanges  {
       };
     });
   }
-  showModal() {
-    (this.mapModal as any).show();
-  }
   
-  hideModal() {
-    (this.mapModal as any).hide();
+  openModal() {
+    this.openMapModal.emit(this.venueData);
   }
 
   toggleShowMore(type: string): void {
